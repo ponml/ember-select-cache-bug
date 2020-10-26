@@ -1,0 +1,28 @@
+    <label
+      class="service-marketplace-generic-rfp-form-label--is-required t-14"
+      for="smp-generic-rfp-l1-service"
+      data-test-generic-rfp-l1-dropdown-label="true"
+    >
+      Category
+    </label>
+    <select
+      id="smp-generic-rfp-l1-service"
+      autocomplete="off"
+      {{on "change" this.onSelectedCategoryChange}}
+    >
+      <option
+        value=""
+        disabled
+        selected={{if (is-empty this.selectedCategory.id) true false}}
+      >
+        Default Placeholder
+      </option>
+      {{#each @categories as |category|}}
+        <option
+          value={{category.id}}
+          selected={{eq category.id this.selectedCategory.id}}
+        >
+          {{category.name}}
+        </option>
+      {{/each}}
+    </select>
