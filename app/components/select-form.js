@@ -24,6 +24,7 @@ export default class SelectForm extends Component {
   constructor() {
     super(...arguments);
     console.log("form ctor")
+    debugger;
   }
 
   /**
@@ -34,7 +35,7 @@ export default class SelectForm extends Component {
   @action
   onSelectedCategoryChange({ target: { value: selectedCategoryId } }) {
     console.log('selectedCategoryId' + selectedCategoryId);
-
+    debugger;
     this.showServiceSelect = true;
   }
 }
