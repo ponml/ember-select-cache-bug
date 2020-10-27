@@ -24,18 +24,19 @@ export default class SelectForm extends Component {
   constructor() {
     super(...arguments);
     console.log("form ctor")
-    debugger;
   }
 
-  /**
-   * Given the selected L1 service Urn event target, fetches the matching L2 services
-   * which will populate the L2 service select element
-   * @param {Object} evt - DOM select event object
-   */
   @action
   onSelectedCategoryChange({ target: { value: selectedCategoryId } }) {
     console.log('selectedCategoryId' + selectedCategoryId);
-    debugger;
     this.showServiceSelect = true;
+    this.selectedCategory = this.args.categories.find((c) => c.id == selectedCategoryId);
+  }
+
+  @action
+  updateSelectedCategoryForInit() {
+    debugger;
+    console.log("did-insert callback")
+    this.selectedCategory = null;
   }
 }

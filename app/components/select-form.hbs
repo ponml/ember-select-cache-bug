@@ -1,31 +1,59 @@
-<label
-  class="service-marketplace-generic-rfp-form-label--is-required t-14"
-  for="smp-generic-rfp-l1-service"
-  data-test-generic-rfp-l1-dropdown-label="true"
->
-  Category
-</label>
-<select
-  id="smp-generic-rfp-l1-service"
-  autocomplete="off"
-  {{on "change" this.onSelectedCategoryChange}}
->
-  <option
-    value=""
-    disabled
-    selected={{if (is-empty this.selectedCategory.id) true false}}
+{{#if @useModifer}}
+  <label
+    for="smp-generic-rfp-l1-service"
   >
-    Default Placeholder
-  </option>
-  {{#each @categories as |category|}}
+    Category (DID-INSERT)
+  </label>
+  <select
+    id="smp-generic-rfp-l1-service"
+    autocomplete="off"
+    {{did-insert this.updateSelectedCategoryForInit}}
+    {{on "change" this.onSelectedCategoryChange}}
+  >
     <option
-      value={{category.id}}
-      selected={{eq category.id this.selectedCategory.id}}
+      value=""
+      disabled
+      selected={{if (is-empty this.selectedCategory.id) true false}}
     >
-      {{category.name}}
+      Default Placeholder
     </option>
-  {{/each}}
-</select>
+    {{#each @categories as |category|}}
+      <option
+        value={{category.id}}
+        selected={{eq category.id this.selectedCategory.id}}
+      >
+        {{category.name}}
+      </option>
+    {{/each}}
+  </select>
+{{else}}
+  <label
+    for="smp-generic-rfp-l1-service-other"
+  >
+    Category
+  </label>
+  <select
+    id="smp-generic-rfp-l1-service-other"
+    autocomplete="off"
+    {{on "change" this.onSelectedCategoryChange}}
+  >
+    <option
+      value=""
+      disabled
+      selected={{if (is-empty this.selectedCategory.id) true false}}
+    >
+      Default Placeholder
+    </option>
+    {{#each @categories as |category|}}
+      <option
+        value={{category.id}}
+        selected={{eq category.id this.selectedCategory.id}}
+      >
+        {{category.name}}
+      </option>
+    {{/each}}
+  </select>
+{{/if}}
 {{#if showServiceSelect}}
  <select>  
    <option
